@@ -88,6 +88,20 @@ export class TallerComponent implements OnInit {
       }
     )
   }
+  findTaller() {
+    const parametro: Parameter = new Parameter();
+    parametro.url = ENDPOINT_TALLERES.GET_TALLER;
+    parametro.request = 'GET';
+
+    this.tallerService.getListVehiculo(parametro).subscribe(
+      async (value) => {
+        console.log('logsssss-+')
+        console.log(value)
+        value?.data ? this.taller = value.data : [];
+
+      }
+    )
+  }
 
   filtros(){
     console.log('************')
