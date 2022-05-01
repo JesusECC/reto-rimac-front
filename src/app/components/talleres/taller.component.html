@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="container p-5">
+        <form [formGroup]="form">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Buscar Talleres</legend>
+                <div class="row pb-4">
+                    <label for="staticEmail" class="col-2 d-flex justify-content-end">Vehiculo:</label>
+                    <div class="col-md-8">
+                        <select class="form-select" aria-label="Default select example" formControlName="placa">
+                            <option>Seleccionar...</option>
+                            <option *ngFor="let item of vehiculo" value="{{item.placa}}">Marca: {{item.marca}} - Modelo:
+                                -{{item.modelo}} - Año: -{{item.anio}} - Placa:{{item.placa}} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" (click)="OpenModal()" class="btn btn-info">Ver Deducibles</button>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <label for="staticEmail" class="col-2 d-flex justify-content-end">Distrito:</label>
+                    <div class="col-md-4">
+                        <select class="form-select" aria-label="Default select example" formControlName="distrito">
+                            <option>Seleccionar...</option>
+                            <option *ngFor="let item of distrito" value="{{item.id}}">{{item.nombre}}</option>
+                        </select>
+                    </div>
+                    <label for="staticEmail" class="col-2 d-flex justify-content-end">Tipo Taller:</label>
+                    <div class="col-md-4">
+                        <select class="form-select" aria-label="Default select example" formControlName="tipo">
+                            <option>Seleccionar...</option>
+                            <option *ngFor="let item of taller" value="{{item.id}}">{{item.descripcion}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-warning" (click)="filtros()">Buscar</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <div class="row p-5">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row justify-content-end">
+            <div class="col-md-2 ">
+                <button type="button" class="btn btn-primary">Seleccionar</button>
+            </div>
+        </div>
+    </div>
+</div>
