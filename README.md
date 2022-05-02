@@ -1,5 +1,5 @@
 # Reto frontend
-+
+
 <img src="./src/assets/web/BUSCADOR DE TALLER.png" alt="imagen del reto"/>
 
 ## Development server
