@@ -7,7 +7,7 @@
                     <label for="staticEmail" class="col-2 d-flex justify-content-end">Vehiculo:</label>
                     <div class="col-md-8">
                         <select class="form-select" aria-label="Default select example" formControlName="placa">
-                            <option>Seleccionar...</option>
+                            <option selected>Seleccionar...</option>
                             <option *ngFor="let item of vehiculo" value="{{item.placa}}">Marca: {{item.marca}} - Modelo:
                                 -{{item.modelo}} - Año: -{{item.anio}} - Placa:{{item.placa}} </option>
                         </select>
@@ -20,15 +20,15 @@
                     <label for="staticEmail" class="col-2 d-flex justify-content-end">Distrito:</label>
                     <div class="col-md-4">
                         <select class="form-select" aria-label="Default select example" formControlName="distrito">
-                            <option>Seleccionar...</option>
+                            <option selected>Seleccionar...</option>
                             <option *ngFor="let item of distrito" value="{{item.id}}">{{item.nombre}}</option>
                         </select>
                     </div>
                     <label for="staticEmail" class="col-2 d-flex justify-content-end">Tipo Taller:</label>
                     <div class="col-md-4">
                         <select class="form-select" aria-label="Default select example" formControlName="tipo">
-                            <option>Seleccionar...</option>
-                            <option *ngFor="let item of taller" value="{{item.id}}">{{item.descripcion}}</option>
+                            <option selected>Seleccionar...</option>
+                            <option *ngFor="let item of TipoTaller" value="{{item.id}}">{{item.descripcion}}</option>
                         </select>
                     </div>
                 </div>
@@ -44,29 +44,24 @@
             <table class="table">
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col"></th>
+                        <th scope="col">TIPO</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">DIRECCIÓN</th>
+                        <th scope="col">TELEFONO</th>
+                        <th scope="col">WEB</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
+                    <tr *ngFor="let item of talleres;let i = index">
+                        <th scope="row">
+                            <input type="radio" name="taller" id="taller-{{i}}" (click)="selectTaller(item)">
+                        </th>
+                        <td>{{item.tipo}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.direccion}}</td>
+                        <td>{{item.telefono}}</td>
+                        <td>{{item.web}}</td>
                     </tr>
                 </tbody>
             </table>

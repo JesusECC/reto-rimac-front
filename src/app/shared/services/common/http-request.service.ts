@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserSessionService } from '../security/user-session.service';
 import { Parameter } from '@app/shared/models/common/parameter';
 import { environment } from 'src/environments/environment';
 
@@ -11,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class HttpRequestService {
 
   constructor(private _http: HttpClient,
-    private _userSessionService: UserSessionService) { }
+  ) { }
 
   public http(parametro: Parameter): Observable<any> {
     parametro.url = environment.backendservicehost + parametro.url;
@@ -33,21 +32,6 @@ export class HttpRequestService {
       case 'POST':
         rpta = this._http.post<any>(parametro.url, parametro.data, this.getHttpOptions(parametro.excludeLoader));
         break;
-      // case 'FILE':
-      //   rpta = this._http.get(parametro.url, this.getHttpOptionsFile());
-      //   break;
-      // case 'FILE_FORM_POST':
-      //   rpta = this._http.post(parametro.url, parametro.data, this.getHttpOptionsFileForm(parametro.excludeLoader));
-      //   break;
-      //   case 'PHOTO':
-      //   rpta = this._http.get(parametro.url, this.getHttpOptionPhoto(parametro.excludeLoader));
-      //   break;
-      // case 'FILE_EXCEL':
-      //   rpta = this._http.get(parametro.url, this.getHttpOptionsFileExcel(parametro.excludeLoader));
-      //   break;
-      // case 'FILE_FORM_PUT':
-      //   rpta = this._http.put(parametro.url, parametro.data, this.getHttpOptionsFileForm(parametro.excludeLoader));
-      //   break;
     }
     return rpta;
   }

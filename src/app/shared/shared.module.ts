@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -11,11 +10,6 @@ import { ContentLayoutComponent } from './components/layout/content-layout/conte
 import { FullLayoutComponent } from './components/layout/full-layout/full-layout.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { RightSidebarComponent } from './components/right-sidebar/right-sidebar.component';
-import { BookmarkComponent } from './components/bookmark/bookmark.component';
-
-
-// services
-// import { NavService } from "./servicesl/nav.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +17,6 @@ import { BookmarkComponent } from './components/bookmark/bookmark.component';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    BookmarkComponent,
     RightSidebarComponent,
     ContentLayoutComponent,
     FullLayoutComponent,
@@ -36,9 +29,6 @@ import { BookmarkComponent } from './components/bookmark/bookmark.component';
   ],
   exports: [
     LoaderComponent,
-  ],
-  providers: [
-    // NavService,
   ]
 })
 export class SharedModule { }

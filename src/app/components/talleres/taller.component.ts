@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalvehiculoComponent } from './modalvehiculo/modalvehiculo.component';
 import { Parameter } from '../../shared/models/common/parameter';
 import { ENDPOINT_TALLERES } from '../../shared/utils/apis';
 import { TallerService } from '../../shared/services/rimac/taller.service'
@@ -15,8 +13,9 @@ export class TallerComponent implements OnInit {
   form: FormGroup;
 
   vehiculo: any[] = [];
-  distrito:any[] = [];
-  taller:any[] = [];
+  distrito: any[] = [];
+  TipoTaller: any[] = [];
+  talleres: any[] = [];
 
 
   constructor(
@@ -30,12 +29,12 @@ export class TallerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getListCompras();
+    this.findVehiculo();
     this.getListDistrito();
     this.getListTaller();
     this.forms();
   }
-  
+
   forms() {
     this.form = this.fb.group({
       placa: [null,],
@@ -43,7 +42,7 @@ export class TallerComponent implements OnInit {
       tipo: [null,],
     });
   }
-  getListCompras() {
+  findVehiculo() {
     const parametro: Parameter = new Parameter();
     parametro.url = ENDPOINT_TALLERES.FIND_VEHICULO;
     parametro.request = 'POST';
@@ -53,7 +52,7 @@ export class TallerComponent implements OnInit {
 
     this.tallerService.getListVehiculo(parametro).subscribe(
       async (value) => {
-        console.log('logsssss-+')
+        console.log('encontrar vehiculo')
         console.log(value)
         value?.data ? this.vehiculo = value.data : [];
 
@@ -67,7 +66,7 @@ export class TallerComponent implements OnInit {
 
     this.tallerService.getListVehiculo(parametro).subscribe(
       async (value) => {
-        console.log('logsssss-+')
+        console.log('listar distrito')
         console.log(value)
         value?.data ? this.distrito = value.data : [];
 
@@ -81,32 +80,38 @@ export class TallerComponent implements OnInit {
 
     this.tallerService.getListVehiculo(parametro).subscribe(
       async (value) => {
-        console.log('logsssss-+')
+        console.log('tipo taller')
         console.log(value)
-        value?.data ? this.taller = value.data : [];
+        value?.data ? this.TipoTaller = value.data : [];
 
       }
     )
   }
   findTaller() {
     const parametro: Parameter = new Parameter();
-    parametro.url = ENDPOINT_TALLERES.GET_TALLER;
-    parametro.request = 'GET';
+    parametro.url = ENDPOINT_TALLERES.FIND_TALLER;
+    parametro.request = 'POST';
+    parametro.data = this.form.value;
 
     this.tallerService.getListVehiculo(parametro).subscribe(
       async (value) => {
-        console.log('logsssss-+')
+        console.log('findTaller')
         console.log(value)
-        value?.data ? this.taller = value.data : [];
+        value?.data ? this.talleres = value.data : [];
 
       }
     )
   }
 
-  filtros(){
-    console.log('************')
+  filtros() {
+    this.findTaller();
     console.log(this.form.value)
 
+  }
+
+  selectTaller(item: any) {
+    console.log('select taller');
+    console.log(item);
   }
 }
 
